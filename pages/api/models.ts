@@ -48,19 +48,26 @@ const handler = async (req: Request): Promise<Response> => {
 
     const json = await response.json();
 
-    const models: OpenAIModel[] = json.data
-      .map((model: any) => {
-        const model_name = (OPENAI_API_TYPE === 'azure') ? model.model : model.id;
-        for (const [key, value] of Object.entries(OpenAIModelID)) {
-          if (value === model_name) {
-            return {
-              id: model.id,
-              name: OpenAIModels[value].name,
-            };
-          }
-        }
-      })
-      .filter(Boolean);
+    // const models: OpenAIModel[] = json.data
+    //   .map((model: any) => {
+    //     const model_name = (OPENAI_API_TYPE === 'azure') ? model.model : model.id;
+    //     for (const [key, value] of Object.entries(OpenAIModelID)) {
+    //       if (value === model_name) {
+    //         return {
+    //           id: model.id,
+    //           name: OpenAIModels[value].name,
+    //         };
+    //       }
+    //     }
+    //   })
+    //   .filter(Boolean);
+
+    const models: OpenAIModel[] = [{
+      id: 'gpt-3.5-turbo-16k',
+      name: 'GPT-3.5',
+      maxLength: 12000,
+      tokenLimit: 4000,
+    }]
 
     return new Response(JSON.stringify(models), { status: 200 });
   } catch (error) {

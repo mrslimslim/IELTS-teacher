@@ -58,8 +58,9 @@ export const OpenAIStream = async (
         ...messages,
       ],
       max_tokens: 4000,
-      temperature: 0,
+      temperature: temperature,
       stream: true,
+      model: 'gpt-3.5-turbo-16k',
     }),
   });
 
