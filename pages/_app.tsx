@@ -11,7 +11,7 @@ const inter = Inter({ subsets: ['latin'] });
 
 function App({ Component, pageProps }: AppProps<{}>) {
   const queryClient = new QueryClient();
-
+  console.log('xxx');
   return (
     <div className={inter.className}>
       <Toaster />
